@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class CriarProdutoUsecase {
     @Autowired
     private ProdutoGateway produtoGateway;
-    public Produto salvaProduto(Produto cliente){
-        return produtoGateway.criar(cliente);
+    public Produto salvaProduto(Produto produto){
+        return produtoGateway.criar(produto);
     }
 }

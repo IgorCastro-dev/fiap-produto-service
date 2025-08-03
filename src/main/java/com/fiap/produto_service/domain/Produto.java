@@ -4,13 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @AllArgsConstructor
 @Getter
 @Builder
 public class Produto {
-    private UUID sku;
+    private String sku;
     private String nome;
     private BigDecimal preco;
 }

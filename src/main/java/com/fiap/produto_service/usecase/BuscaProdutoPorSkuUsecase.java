@@ -11,7 +11,7 @@ import java.util.UUID;
 public class BuscaProdutoPorSkuUsecase {
     @Autowired
     private ProdutoGateway produtoGateway;
-    public Produto buscarProdutoPorSku(UUID sdk){
+    public Produto buscarProdutoPorSku(String sdk){
         return produtoGateway.buscaPorSku(sdk);
     }
 

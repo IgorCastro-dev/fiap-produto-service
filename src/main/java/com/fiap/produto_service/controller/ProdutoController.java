@@ -12,7 +12,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,8 +26,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/produto")
@@ -58,7 +55,7 @@ public class ProdutoController {
             @ApiResponse(responseCode = "500", description = "Erro no servidor ao buscar o produto")
     })
     @GetMapping("/{sku}")
-    public ResponseEntity<Produto> buscarPorSku(@Valid @NotNull @PathVariable UUID sku){
+    public ResponseEntity<Produto> buscarPorSku(@Valid @NotNull @PathVariable String sku){
         return ResponseEntity.status(HttpStatus.OK).body(buscaProdutoPorSkuUsecase.buscarProdutoPorSku(sku));
     }
 
@@ -69,7 +66,7 @@ public class ProdutoController {
             @ApiResponse(responseCode = "500", description = "Erro no servidor ao deletar o produto")
     })
     @DeleteMapping("/{sku}")
-    public ResponseEntity<String> deletarPorSku(@Valid @NotNull @PathVariable UUID sku){
+    public ResponseEntity<String> deletarPorSku(@Valid @NotNull @PathVariable String sku){
         return ResponseEntity.status(HttpStatus.OK).body(deletaProdutoUsecase.deletaProdutoPorSku(sku));
     }
 

@@ -18,12 +18,12 @@ public class ProdutoJpaGateway implements ProdutoGateway {
     ProdutoRepository produtoRepository;
     @Override
     public Produto criar(Produto produto) {
-        produtoRepository.save(mapToEntity(produto));
-        return produto;
+        ProdutoEntity produtoEntity = produtoRepository.save(mapToEntity(produto));
+        return mapToDto(produtoEntity);
     }
 
     @Override
-    public Produto buscaPorSku(UUID sku) {
+    public Produto buscaPorSku(String sku) {
         ProdutoEntity produtoEntity = produtoRepository.findBySku(sku)
                 .orElseThrow(
                         () -> new RuntimeException("Produto não ENCONTRADO POR ESSE SKU")
@@ -32,7 +32,7 @@ public class ProdutoJpaGateway implements ProdutoGateway {
     }
 
     @Override
-    public String deletaPorSku(UUID sku) {
+    public String deletaPorSku(String sku) {
         buscaPorSku(sku);
         produtoRepository.deleteBySku(sku);
         return "Produto deletado com sucesso";
@@ -45,8 +45,8 @@ public class ProdutoJpaGateway implements ProdutoGateway {
 
     private ProdutoEntity mapToEntity(Produto produto){
         return ProdutoEntity.builder()
-                .sku(produto.getSku())
                 .nome(produto.getNome())
+                .sku(UUID.randomUUID().toString())
                 .preco(produto.getPreco())
                 .build();
     }

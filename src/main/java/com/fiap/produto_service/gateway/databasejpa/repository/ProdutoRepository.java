@@ -7,12 +7,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Repository
-public interface ProdutoRepository extends JpaRepository<ProdutoEntity, UUID> {
-    Optional<ProdutoEntity> findBySku(UUID sku);
-    void deleteBySku(UUID sku);
+public interface ProdutoRepository extends JpaRepository<ProdutoEntity, String> {
+    Optional<ProdutoEntity> findBySku(String sku);
+    void deleteBySku(String sku);
 
     Page<ProdutoEntity> findAll(Pageable pageable);
 }

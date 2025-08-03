@@ -17,7 +17,7 @@ import java.util.UUID;
 
 
 @Entity
-@Table(name = "PRODUTO")
+@Table(name = "produto")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -25,9 +25,8 @@ import java.util.UUID;
 @Builder
 public class ProdutoEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "SKU")
-    private UUID sku;
+    @Column(name = "SKU", columnDefinition = "CHAR(36)")
+    private String sku;
     @Column(name = "NOME", nullable = false, length = 50)
     private String nome;
     @Column(name = "PRECO", nullable = false)

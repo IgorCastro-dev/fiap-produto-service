@@ -10,7 +10,7 @@ import java.util.UUID;
 public class DeletaProdutoUsecase {
     @Autowired
     private ProdutoGateway produtoGateway;
-    public String deletaProdutoPorSku(UUID sku){
+    public String deletaProdutoPorSku(String sku){
         return produtoGateway.deletaPorSku(sku);
     }
 }
